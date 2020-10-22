@@ -1,4 +1,5 @@
 const express = require('express');
+const bcrypt = require('bcrypt-nodejs');
 
 const app = express();
 
@@ -10,7 +11,7 @@ const database = {
          id: '123',
          name: 'John',
          email: 'john@gmail.com',
-         password: 'cookies',
+         // password: 'cookies',
          entries: 0,
          joined: new Date(),
       },
@@ -18,22 +19,41 @@ const database = {
          id: '124',
          name: 'Jane',
          email: 'jane@gmail.com',
-         password: '123456',
+         // password: '123456',
          entries: 0,
          joined: new Date(),
+      },
+   ],
+   login: [
+      {
+         id: '123',
+         hash: '$2a$10$r6i0HzMdLcEqrQzQh9nwaODf9Zj2pbh4cIC30cjVh/HsxHOGzYyau',
+         email: 'john@gmail.com',
+      },
+      {
+         id: '124',
+         hash: '$2a$10$kW4xZu4pmV0KU6ip1mgrzeNkRtkGUCStiJos.pFJrjIoCme2h07mG',
+         email: 'jane@gmail.com',
       },
    ],
 };
 
 app.get('/', (req, res) => {
-   // res.send('this is working');
    res.send(database.users);
 });
 
 // signin --> POST success/fail
 // ... create existing user
 app.post('/signin123', (req, res) => {
-   // res.json('signin');
+   // Load hash from your password DB.
+   bcrypt.compare(
+      'cookies',
+      '$2a$10$r6i0HzMdLcEqrQzQh9nwaODf9Zj2pbh4cIC30cjVh/HsxHOGzYyau',
+      function (err, res) {
+         console.log('correct password', res);
+         console.log('error', err);
+      }
+   );
    if (
       req.body.email === database.users[0].email &&
       req.body.password === database.users[0].password
@@ -48,6 +68,10 @@ app.post('/signin123', (req, res) => {
 // ... create new user
 app.post('/register123', (req, res) => {
    const { email, name, password } = req.body;
+   bcrypt.hash(password, null, null, function (err, hash) {
+      // Store hash in your password DB.
+      console.log(hash);
+   });
    database.users.push({
       id: '125',
       name: name,
@@ -93,7 +117,6 @@ app.put('/image', (req, res) => {
 });
 
 const port = 3000;
-
 app.listen(port, () => {
    console.log(`App is running on port ${port}.`);
 });
