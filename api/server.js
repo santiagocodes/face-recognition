@@ -1,42 +1,24 @@
 const express = require('express');
 const bcrypt = require('bcrypt-nodejs');
+const cors = require('cors');
+const knex = require('knex');
+
+const database = knex({
+   client: 'pg',
+   connection: {
+      host: '127.0.0.1',
+      user: 'postgres',
+      password: '',
+      database: 'face-recognition',
+   },
+});
+
+console.log(database.select('*').from('users'));
 
 const app = express();
 
 app.use(express.json());
-
-const database = {
-   users: [
-      {
-         id: '123',
-         name: 'John',
-         email: 'john@gmail.com',
-         // password: 'cookies',
-         entries: 0,
-         joined: new Date(),
-      },
-      {
-         id: '124',
-         name: 'Jane',
-         email: 'jane@gmail.com',
-         // password: '123456',
-         entries: 0,
-         joined: new Date(),
-      },
-   ],
-   login: [
-      {
-         id: '123',
-         hash: '$2a$10$r6i0HzMdLcEqrQzQh9nwaODf9Zj2pbh4cIC30cjVh/HsxHOGzYyau',
-         email: 'john@gmail.com',
-      },
-      {
-         id: '124',
-         hash: '$2a$10$kW4xZu4pmV0KU6ip1mgrzeNkRtkGUCStiJos.pFJrjIoCme2h07mG',
-         email: 'jane@gmail.com',
-      },
-   ],
-};
+app.use(cors());
 
 app.get('/', (req, res) => {
    res.send(database.users);
@@ -44,16 +26,16 @@ app.get('/', (req, res) => {
 
 // signin --> POST success/fail
 // ... create existing user
-app.post('/signin123', (req, res) => {
+app.post('/signin', (req, res) => {
    // Load hash from your password DB.
-   bcrypt.compare(
-      'cookies',
-      '$2a$10$r6i0HzMdLcEqrQzQh9nwaODf9Zj2pbh4cIC30cjVh/HsxHOGzYyau',
-      function (err, res) {
-         console.log('correct password', res);
-         console.log('error', err);
-      }
-   );
+   // bcrypt.compare(
+   //    'cookies',
+   //    '$2a$10$r6i0HzMdLcEqrQzQh9nwaODf9Zj2pbh4cIC30cjVh/HsxHOGzYyau',
+   //    function (err, res) {
+   //       console.log('correct password', res);
+   //       console.log('error', err);
+   //    }
+   // );
    if (
       req.body.email === database.users[0].email &&
       req.body.password === database.users[0].password
@@ -120,3 +102,37 @@ const port = 3000;
 app.listen(port, () => {
    console.log(`App is running on port ${port}.`);
 });
+
+// Pre connection to DataBase
+// const database = {
+//    users: [
+//       {
+//          id: '123',
+//          name: 'John',
+//          email: 'john@gmail.com',
+//          password: 'cookies',
+//          entries: 0,
+//          joined: new Date(),
+//       },
+//       {
+//          id: '124',
+//          name: 'Jane',
+//          email: 'jane@gmail.com',
+//          password: '123456',
+//          entries: 0,
+//          joined: new Date(),
+//       },
+//    ],
+//    login: [
+//       {
+//          id: '123',
+//          hash: '$2a$10$r6i0HzMdLcEqrQzQh9nwaODf9Zj2pbh4cIC30cjVh/HsxHOGzYyau',
+//          email: 'john@gmail.com',
+//       },
+//       {
+//          id: '124',
+//          hash: '$2a$10$kW4xZu4pmV0KU6ip1mgrzeNkRtkGUCStiJos.pFJrjIoCme2h07mG',
+//          email: 'jane@gmail.com',
+//       },
+//    ],
+// };
