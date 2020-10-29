@@ -85,20 +85,17 @@ app.get('/profile/:id', (req, res) => {
 });
 
 // image --> PUT user
-// ... increase entries by 1 every time user submits new image
+// ... update/increase entries by 1 every time user submits new image
 app.put('/image', (req, res) => {
    const { id } = req.body;
-   let found = false;
-   database.users.forEach((user) => {
-      if (user.id === id) {
-         found = true;
-         user.entries++;
-         return res.json(user.entries);
-      }
-   });
-   if (!found) {
-      res.status(400).json('not found');
-   }
+   db('users')
+      .where('id', '=', id)
+      .increment('entries', 1)
+      .returning('entries')
+      .then((entries) => {
+         res.entries(entries[0]);
+      })
+      .catch((err) => res.status(400).json('Unable to get entries.'));
 });
 
 const port = 3000;
@@ -168,6 +165,23 @@ app.listen(port, () => {
 //       if (user.id === id) {
 //          found = true;
 //          return res.json(user);
+//       }
+//    });
+//    if (!found) {
+//       res.status(400).json('not found');
+//    }
+// });
+//
+// // image --> PUT user
+// // ... update/increase entries by 1 every time user submits new image
+// app.put('/image', (req, res) => {
+//    const { id } = req.body;
+//    let found = false;
+//    database.users.forEach((user) => {
+//       if (user.id === id) {
+//          found = true;
+//          user.entries++;
+//          return res.json(user.entries);
 //       }
 //    });
 //    if (!found) {
