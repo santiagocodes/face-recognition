@@ -25,50 +25,60 @@ app.use(express.json());
 app.use(cors());
 
 app.get('/', (req, res) => {
-   res.send(database.users);
+   res.send('Success!');
 });
 
 // signin --> POST success/fail
 // ... create existing user
 app.post('/signin', (req, res) => {
-   // Load hash from your password DB.
-   // bcrypt.compare(
-   //    'cookies',
-   //    '$2a$10$r6i0HzMdLcEqrQzQh9nwaODf9Zj2pbh4cIC30cjVh/HsxHOGzYyau',
-   //    function (err, res) {
-   //       console.log('correct password', res);
-   //       console.log('error', err);
-   //    }
-   // );
-   if (
-      req.body.email === database.users[0].email &&
-      req.body.password === database.users[0].password
-   ) {
-      res.json('success');
-   } else {
-      res.status(400).json('error logging in');
-   }
+   db.select('email', 'hash')
+      .from('login')
+      .where('email', '=', req.body.email)
+      .then((data) => {
+         const isValid = bcrypt.compareSync(req.body.password, data[0].hash);
+         if (isValid) {
+            return db
+               .select('*')
+               .from('users')
+               .where('email', '=', req.body.email)
+               .then((user) => {
+                  res.json(user[0]);
+               })
+               .catch((err) => res.status(400).json('Unable to get User'));
+         } else {
+            res.status(400).json('Wrong email and/or password.');
+         }
+      })
+      .catch((err) => res.status(400).json('Wrong email and/or password.'));
 });
 
 // register --> POST user
 // ... create new user
 app.post('/register', (req, res) => {
    const { email, name, password } = req.body;
-   bcrypt.hash(password, null, null, function (err, hash) {
-      // Store hash in your password DB.
-      console.log(hash);
-   });
-   db('users')
-      .returning('*')
-      .insert({
+   let hash = bcrypt.hashSync(password);
+   db.transaction((trx) => {
+      trx.insert({
+         hash: hash,
          email: email,
-         name: name,
-         joined: new Date(),
       })
-      .then((user) => {
-         res.json(user[0]);
-      })
-      .catch((err) => res.status(400).json('Unable to register.'));
+         .into('login')
+         .returning('email')
+         .then((loginEmail) => {
+            return trx('users')
+               .returning('*')
+               .insert({
+                  email: loginEmail[0],
+                  name: name,
+                  joined: new Date(),
+               })
+               .then((user) => {
+                  res.json(user[0]);
+               });
+         })
+         .then(trx.commit)
+         .catch(trx.rollback);
+   }).catch((err) => res.status(400).json('Unable to register.'));
 });
 
 // profile/:userId --> GET user
@@ -186,5 +196,49 @@ app.listen(port, () => {
 //    });
 //    if (!found) {
 //       res.status(400).json('not found');
+//    }
+// });
+//
+// // signin --> POST success/fail
+// // ... create existing user
+// app.post('/signin', (req, res) => {
+//    // Load hash from your password DB.
+//    // bcrypt.compare(
+//    //    'cookies',
+//    //    '$2a$10$r6i0HzMdLcEqrQzQh9nwaODf9Zj2pbh4cIC30cjVh/HsxHOGzYyau',
+//    //    function (err, res) {
+//    //       console.log('correct password', res);
+//    //       console.log('error', err);
+//    //    }
+//    // );
+//    if (
+//       req.body.email === database.users[0].email &&
+//       req.body.password === database.users[0].password
+//    ) {
+//       res.json('success');
+//    } else {
+//       res.status(400).json('error logging in');
+//    }
+// });
+//
+// // signin --> POST success/fail
+// // ... create existing user
+// app.post('/signin', (req, res) => {
+//    // Load hash from your password DB.
+//    // bcrypt.compare(
+//    //    'cookies',
+//    //    '$2a$10$r6i0HzMdLcEqrQzQh9nwaODf9Zj2pbh4cIC30cjVh/HsxHOGzYyau',
+//    //    function (err, res) {
+//    //       console.log('correct password', res);
+//    //       console.log('error', err);
+//    //    }
+//    // );
+//    if (
+//       req.body.email === database.users[0].email &&
+//       req.body.password === database.users[0].password
+//    ) {
+//       res.json('success');
+//    } else {
+//       res.status(400).json('error logging in');
 //    }
 // });
