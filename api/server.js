@@ -13,11 +13,11 @@ const db = knex({
    },
 });
 
-db.select('*')
-   .from('users')
-   .then((data) => {
-      console.log(data);
-   });
+// db.select('*')
+//    .from('users')
+//    .then((data) => {
+//       console.log(data);
+//    });
 
 const app = express();
 
@@ -73,18 +73,15 @@ app.post('/register', (req, res) => {
 
 // profile/:userId --> GET user
 // ... get specific user's information
-app.get('/profile123/:id', (req, res) => {
+app.get('/profile/:id', (req, res) => {
    const { id } = req.params;
-   let found = false;
-   database.users.forEach((user) => {
-      if (user.id === id) {
-         found = true;
-         return res.json(user);
-      }
-   });
-   if (!found) {
-      res.status(400).json('not found');
-   }
+   db.select('*')
+      .from('users')
+      .where({ id })
+      .then((user) => {
+         user.length ? res.json(user[0]) : res.status(400).json('User not found :(');
+      })
+      .catch((err) => res.status(400).json('Error getting user.'));
 });
 
 // image --> PUT user
@@ -160,4 +157,20 @@ app.listen(port, () => {
 //       joined: new Date(),
 //    });
 //    res.json(database.users[database.users.length - 1]);
+// });
+//
+// // profile/:userId --> GET user
+// // ... get specific user's information
+// app.get('/profile123/:id', (req, res) => {
+//    const { id } = req.params;
+//    let found = false;
+//    database.users.forEach((user) => {
+//       if (user.id === id) {
+//          found = true;
+//          return res.json(user);
+//       }
+//    });
+//    if (!found) {
+//       res.status(400).json('not found');
+//    }
 // });
