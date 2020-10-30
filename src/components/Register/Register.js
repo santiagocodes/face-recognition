@@ -42,6 +42,7 @@ class Register extends React.Component {
    };
 
    render() {
+      const { onRouteChange } = this.props;
       return (
          <article className="bg-light-blue o-80 br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
             <main className="pa4 black-80">
@@ -92,6 +93,17 @@ class Register extends React.Component {
                         type="submit"
                         value="Register"
                      />
+                  </div>
+                  <div className="lh-copy mt3">
+                     <p className="f6">
+                        Already have an account?
+                        <span
+                           onClick={() => onRouteChange('signin')}
+                           className="f5 link dim black db pointer"
+                        >
+                           Sign In
+                        </span>
+                     </p>
                   </div>
                </div>
             </main>
