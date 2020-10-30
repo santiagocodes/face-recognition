@@ -51,6 +51,12 @@ app.put('/image', (req, res) => {
    image.handleImage(req, res, db);
 });
 
+// image --> post image
+// ... submit new image to clarifai
+app.post('/imageurl', (req, res) => {
+   image.handleApiCall(req, res);
+});
+
 const port = 3000;
 app.listen(port, () => {
    console.log(`App is running on port ${port}.`);
@@ -184,4 +190,9 @@ app.listen(port, () => {
 //    } else {
 //       res.status(400).json('error logging in');
 //    }
+// });
+
+// const port = 3000;
+// app.listen(port, () => {
+//    console.log(`App is running on port ${port}.`);
 // });
