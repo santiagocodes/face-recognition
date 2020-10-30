@@ -5,7 +5,6 @@ import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import Navigation from './components/Navigation/Navigation';
 import SignIn from './components/SignIn/SignIn';
 import Register from './components/Register/Register';
-import Logo from './components/Logo/Logo';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import './App.css';
@@ -79,7 +78,7 @@ class App extends React.Component {
       this.setState({ input: event.target.value });
    };
 
-   onButtonSubmit = () => {
+   onPictureSubmit = () => {
       this.setState({ imageUrl: this.state.input });
       app.models
          .predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
@@ -121,14 +120,13 @@ class App extends React.Component {
             <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
             {route === 'home' ? (
                <div>
-                  <Logo />
                   <Rank
                      name={this.state.user.name}
                      entries={this.state.user.entries}
                   />
                   <ImageLinkForm
                      onInputChange={this.onInputChange}
-                     onButtonSubmit={this.onButtonSubmit}
+                     onPictureSubmit={this.onPictureSubmit}
                   />
                   <FaceRecognition box={box} imageUrl={imageUrl} />
                </div>
