@@ -1,5 +1,5 @@
 import React from 'react';
-import faceLogo from './Media/faceLogo.png';
+import faceLogo from '../Media/faceLogo.png';
 
 const Navigation = ({ onRouteChange, isSignedIn }) => {
    if (isSignedIn) {
