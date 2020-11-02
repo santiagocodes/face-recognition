@@ -5,7 +5,7 @@
       "node": "=13.13.0",
       "npm": "=6.14.4"
    },
-   "description": "The React App with NodeJS that detects faces.",
+   "description": "The React App with NodeJS that detects faces on any picture.",
    "main": "server.js",
    "dependencies": {
       "bcrypt-nodejs": "0.0.3",
