@@ -8,8 +8,6 @@ const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
-const PORT = process.env.PORT || 3000;
-
 // Database Connection
 const db = knex({
    client: 'pg',
@@ -85,6 +83,7 @@ app.post('/imageurl', (req, res) => {
 });
 
 // Listening to port...
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
    console.log(`App is running on port ${PORT}.`);
 });
