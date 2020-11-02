@@ -2,8 +2,8 @@
    "name": "face-recognition-react",
    "version": "0.1.0",
    "engines": {
-      "node": "13.13.0",
-      "npm": "6.14.4"
+      "node": "=13.13.0",
+      "npm": "=6.14.4"
    },
    "dependencies": {
       "@testing-library/jest-dom": "^4.2.4",
