@@ -9,6 +9,7 @@ const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
 // Database Connection
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
 const db = knex({
    client: 'pg',
    connection: {
@@ -22,7 +23,7 @@ const app = express();
 app.use(express.json());
 
 // cors
-const whitelist = ['http://localhost:3000', 'http://localhost:8080', 'http://santiagocodes-face-recognition.heroku.com']
+const whitelist = ['http://localhost:3000', `http://localhost:${PORT}`, 'http://santiagocodes-face-recognition.heroku.com', 'https://santiagocodes-face-recognition.heroku.com']
 const corsOptions = {
   origin: function (origin, callback) {
     console.log("** Origin of request " + origin)
