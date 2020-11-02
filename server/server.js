@@ -22,7 +22,7 @@ const app = express();
 app.use(express.json());
 
 // cors
-const whitelist = ['http://localhost:3000', 'http://localhost:8080', 'https://santiagocodes-face-recognition.heroku.com']
+const whitelist = ['http://localhost:3000', 'http://localhost:8080', 'http://santiagocodes-face-recognition.heroku.com']
 const corsOptions = {
   origin: function (origin, callback) {
     console.log("** Origin of request " + origin)
@@ -47,6 +47,8 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
 }
+
+//ENDPOINTS
 
 app.get('/', (req, res) => {
    res.send('Success!');
