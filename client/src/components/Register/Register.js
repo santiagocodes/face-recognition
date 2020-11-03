@@ -26,7 +26,7 @@ class Register extends React.Component {
       fetch('/register', {
          method: 'post',
          headers: { 
-            'Content-Type': 'application/json; charset=utf-8' 
+            'Content-Type': 'application/json' 
          },
          body: JSON.stringify({
             email: this.state.email,
@@ -35,6 +35,7 @@ class Register extends React.Component {
          }),
       })
          .then((response) => response.json())
+         .then((response) => console.log(response))
          .then((user) => {
             if (user.id) {
                this.props.loadUser(user);
