@@ -26,8 +26,7 @@ class Register extends React.Component {
       fetch('/register', {
          method: 'post',
          headers: { 
-            'Content-Type': 'application/json', 
-            'Accept': 'application/json' 
+            'Content-Type': 'application/json; charset=utf-8' 
          },
          body: JSON.stringify({
             email: this.state.email,
