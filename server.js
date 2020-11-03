@@ -49,7 +49,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-//ENDPOINTS
+// ENDPOINTS
 
 app.get('/', (req, res) => {
    res.send('Success!');
