@@ -23,7 +23,7 @@ class Register extends React.Component {
    };
 
    onSubmitRegister = () => {
-      fetch('/register', {
+      fetch('https://santiagocodes-face-recognition.herokuapp.com/register', {
          method: 'post',
          headers: { 
             'Content-Type': 'application/json; charset=utf-8' 
@@ -42,7 +42,7 @@ class Register extends React.Component {
             }
          })
          .catch(err => {
-            console.log(err)
+            console.log("Catch error at fetch: " + err)
          })
    };
 
