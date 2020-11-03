@@ -16,7 +16,7 @@
       "react-scripts": "^4.0.0",
       "tachyons": "^4.12.0"
    },
-   "proxy": "santiagocodes-face-recognition.herokuapp.com/",
+   "proxy": "http://localhost:8080",
    "scripts": {
       "start": "react-scripts start",
       "build": "react-scripts build",
