@@ -23,7 +23,7 @@ class Register extends React.Component {
    };
 
    onSubmitRegister = () => {
-      fetch('https://santiagocodes-face-recognition.herokuapp.com/register', {
+      fetch('/register', {
          method: 'post',
          headers: { 
             'Content-Type': 'application/json; charset=utf-8' 
