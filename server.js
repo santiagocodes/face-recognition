@@ -68,7 +68,7 @@ app.post('/signin', (req, res) => {
 
 // register --> POST user
 // ... create new user
-app.post('/register', (req, res) => {
+app.post('/register', cors(corsOptions), (req, res) => {
    console.log('register endpoint');
    register.handleRegister(req, res, db, bcrypt);
 });

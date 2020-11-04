@@ -26,5 +26,6 @@
       "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
    },
    "author": "santiagocodes",
+   "homepage": "https://santiagocodes-face-recognition.herokuapp.com/",
    "license": "ISC"
 }
