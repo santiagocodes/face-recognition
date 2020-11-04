@@ -23,6 +23,9 @@ const db = knex({
 const app = express();
 app.use(express.json());
 
+// body parser
+app.use(bodyParser.json());
+
 // cors
 const whitelist = ['http://localhost:3000', 'http://localhost:8080', 'http://santiagocodes-face-recognition.heroku.com', 'https://santiagocodes-face-recognition.heroku.com']
 const corsOptions = {
@@ -39,9 +42,6 @@ const corsOptions = {
 }
 app.use(cors(corsOptions))
 
-// body parser
-app.use(bodyParser.json());
-
 // Serve React to the browser
 const path = require('path');
 if (process.env.NODE_ENV === 'production') {
@@ -55,7 +55,10 @@ if (process.env.NODE_ENV === 'production') {
 
 // ENDPOINTS
 
-app.get('/', (req, res) => { res.send(db.users) });
+app.get('/', (req, res) => { 
+   res.send(db.users) 
+   console.log(users)
+});
 
 // signin --> POST success/fail
 // ... signin existing user
@@ -66,7 +69,7 @@ app.post('/signin', (req, res) => {
 // register --> POST user
 // ... create new user
 app.post('/register', (req, res) => {
-   console.log('register endpoint')
+   console.log('register endpoint');
    register.handleRegister(req, res, db, bcrypt);
 });
 
