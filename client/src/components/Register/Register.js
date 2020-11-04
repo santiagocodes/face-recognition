@@ -33,16 +33,8 @@ class Register extends React.Component {
             password: this.state.password,
             name: this.state.name
          })
+         console.log(email, password, name)
       })
-         .then(function(response) {
-            if (!response.ok) {
-               throw Error(response.statusText);
-            }
-            return response;
-         })
-         .then(function(response) {
-            console.log("ok");
-         })
          .then((response) => response.json())
          .then((response) => console.log(response))
          .then((user) => {
@@ -54,7 +46,7 @@ class Register extends React.Component {
             }
          })
          .catch(err => {
-            console.log("Catch error at fetch: " + err)
+            console.error("Catch: " + err)
          })
    };
 
