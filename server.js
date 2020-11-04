@@ -55,9 +55,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // ENDPOINTS
 
-app.get('/', (req, res) => {
-   res.send('Success!');
-});
+app.get('/', (req, res) => { res.send(db.users) });
 
 // signin --> POST success/fail
 // ... signin existing user
