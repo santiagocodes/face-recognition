@@ -34,6 +34,15 @@ class Register extends React.Component {
             name: this.state.name
          })
       })
+         .then(function(response) {
+            if (!response.ok) {
+               throw Error(response.statusText);
+            }
+            return response;
+         })
+         .then(function(response) {
+            console.log("ok");
+         })
          .then((response) => response.json())
          .then((response) => console.log(response))
          .then((user) => {
