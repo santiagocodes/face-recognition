@@ -38,6 +38,8 @@ const corsOptions = {
 }
 app.use(cors(corsOptions))
 
+app.use(bodyParser.json());
+
 // Serve React to the browser
 const path = require('path');
 if (process.env.NODE_ENV === 'production') {
