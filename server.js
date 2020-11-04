@@ -9,7 +9,7 @@ const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
 // Database Connection
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
+// process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
 const db = knex({
    client: 'pg',
    connection: {
@@ -64,6 +64,7 @@ app.post('/signin', (req, res) => {
 // register --> POST user
 // ... create new user
 app.post('/register', (req, res) => {
+   console.log('register endpoint')
    register.handleRegister(req, res, db, bcrypt);
 });
 
