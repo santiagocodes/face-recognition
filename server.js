@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 const knex = require('knex');
@@ -38,6 +39,7 @@ const corsOptions = {
 }
 app.use(cors(corsOptions))
 
+// body parser
 app.use(bodyParser.json());
 
 // Serve React to the browser
