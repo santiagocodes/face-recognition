@@ -2,9 +2,9 @@ import React from 'react';
 
 const Rank = ({ name, entries }) => {
    return (
-      <div>
-         <div className="white f1 pa3">{`Welcome to Face Recognition ${name}!`}</div>
-         <div className="white f2 pa1">{`Your current entry count is ${entries}.`}</div>
+      <div className="pa1">
+         <p className="white f1">{`Welcome to Face Recognition ${name}!`}</p>
+         <p className="white f3 mh5">{`The Web App will detect faces in your pictures. Your current picture entry count is ${entries}.`}</p>
       </div>
    );
 };

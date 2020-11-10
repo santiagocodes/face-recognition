@@ -6,6 +6,7 @@ import SignIn from './components/SignIn/SignIn';
 import Register from './components/Register/Register';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
+import Footer from './components/Footer/Footer';
 import './App.css';
 
 const particlesOptions = {
@@ -120,6 +121,8 @@ class App extends React.Component {
       return (
          <div className="App">
             <Particles className="particles" params={particlesOptions} />
+            <div className="content">
+            
             <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
             {route === 'home' ? (
                <div>
@@ -133,14 +136,18 @@ class App extends React.Component {
                   />
                   <FaceRecognition box={box} imageUrl={imageUrl} />
                </div>
-            ) : route === 'signin' ? (
-               <SignIn loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
+            ) : route === 'signin' || 'signout' ? (
+               <SignIn 
+                  loadUser={this.loadUser} 
+                  onRouteChange={this.onRouteChange} />
             ) : (
                <Register
                   loadUser={this.loadUser}
-                  onRouteChange={this.onRouteChange}
-               />
+                  onRouteChange={this.onRouteChange} />
             )}
+            </div>
+            
+            <Footer/>
          </div>
       );
    }
