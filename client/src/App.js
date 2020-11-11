@@ -120,8 +120,8 @@ class App extends React.Component {
       const { isSignedIn, imageUrl, route, box } = this.state;
       return (
          <div className="App">
+             <div className="content">
             <Particles className="particles" params={particlesOptions} />
-            <div className="content">
             
             <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
             {route === 'home' ? (
