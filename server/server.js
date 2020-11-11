@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 const knex = require('knex');
+require('dotenv').config();
 
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
@@ -10,7 +11,7 @@ const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
 // Database Connection
-// process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
 const db = knex({
    client: 'pg',
    connection: {
@@ -18,6 +19,16 @@ const db = knex({
       ssl: true
    },
 });
+
+// const db = knex({
+//    client: 'pg',
+//    connection: {
+//      host : '127.0.0.1',
+//      user : 'postgres',
+//      password : process.env.DATABASE_DEV_PASSWORD,
+//      database : 'face-recognition'
+//    }
+//  });
 
 // express
 const app = express();
