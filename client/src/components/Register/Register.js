@@ -49,7 +49,7 @@ class Register extends React.Component {
    handleKeyPress = (event) => {
       //it triggers by pressing the enter key
     if (event.keyCode === 13) {
-      onSubmitRegister();
+      this.onSubmitRegister();
     }
   };
 

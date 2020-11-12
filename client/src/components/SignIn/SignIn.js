@@ -38,7 +38,7 @@ class SignIn extends React.Component {
    handleKeyPress = (event) => {
       //it triggers by pressing the enter key
     if (event.keyCode === 13) {
-      onSubmitSignIn();
+      this.onSubmitSignIn();
     }
   };
 

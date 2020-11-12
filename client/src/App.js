@@ -139,10 +139,10 @@ class App extends React.Component {
                </div>
             ) : (
                route === 'signin'
-               ? <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
+               ? <SignIn loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
                : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
             )}
-            
+
             </div>
             
             <Footer/>
