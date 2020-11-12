@@ -23,7 +23,9 @@ const handleImage = (req, res, db) => {
       .where('id', '=', id)
       .increment('entries', 1)
       .returning('entries')
-      .then(entries => res.entries(entries[0]))
+      .then(entries => {
+         res.json(entries[0])
+      })
       .catch(err => {
          console.log(err)
          res.status(400).json('unavailable')
