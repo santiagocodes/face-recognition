@@ -69,7 +69,6 @@ if (process.env.NODE_ENV === 'production') {
 
 app.get('/', (req, res) => { 
    res.send(db.users) 
-   console.log(users)
 });
 
 // signin --> POST success/fail

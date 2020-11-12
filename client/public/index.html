@@ -9,7 +9,8 @@
          name="description"
          content="Face recognition web app that detects faces on your pictures."
       />
-      <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src https://santiagocodes-face-recognition.herokuapp.com*; child-src 'none';">
+      <meta http-equiv="Content-Security-Policy" content="default-src 'none'; connect-src 'self';font-src 'self'; img-src 'self' data: https:; style-src 'self' ; script-src 'self'">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.ico" />
       <!--
       manifest.json provides metadata used when your web app is installed on a
