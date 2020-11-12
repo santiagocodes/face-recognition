@@ -72,6 +72,7 @@ class SignIn extends React.Component {
                            name="password"
                            id="password"
                            onChange={this.onPasswordChange}
+                           onKeyPress={this.handleKeyPress}
                         />
                      </div>
                   </fieldset>
