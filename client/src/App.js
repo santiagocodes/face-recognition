@@ -129,6 +129,7 @@ class App extends React.Component {
                   <Rank
                      name={this.state.user.name}
                      entries={this.state.user.entries}
+                     imageUrl={imageUrl}
                   />
                   <ImageLinkForm
                      onInputChange={this.onInputChange}
