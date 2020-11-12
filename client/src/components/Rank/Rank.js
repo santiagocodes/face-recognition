@@ -9,7 +9,7 @@ const Rank = ({ name, entries, imageUrl }) => {
                <p className="white f3">{`The Web App will detect the faces of the pictures you submit. Your current picture entry count is ${entries}.`}</p>
             </div>
          ) : (
-            <p className="white f4 ma0">{`${name}, your current picture entry count is ${entries}.`}</p>
+            <p className="white f3 ma0">{`${name}, your current picture entry count is ${entries}.`}</p>
          )}
       </div> 
          )
