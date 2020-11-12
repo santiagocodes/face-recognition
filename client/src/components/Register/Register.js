@@ -46,6 +46,13 @@ class Register extends React.Component {
          })
    }
 
+   handleKeyPress = (event) => {
+      //it triggers by pressing the enter key
+    if (event.keyCode === 13) {
+      onSubmitRegister();
+    }
+  };
+
    render() {
       const { onRouteChange } = this.props;
       return (
@@ -94,6 +101,7 @@ class Register extends React.Component {
                   <div className="">
                      <input
                         onClick={this.onSubmitRegister}
+                        onKeyPress={this.handleKeyPress}
                         className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
                         type="submit"
                         value="Register"

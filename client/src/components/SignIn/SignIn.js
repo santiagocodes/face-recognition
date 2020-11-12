@@ -35,6 +35,13 @@ class SignIn extends React.Component {
          });
    };
 
+   handleKeyPress = (event) => {
+      //it triggers by pressing the enter key
+    if (event.keyCode === 13) {
+      onSubmitSignIn();
+    }
+  };
+
    render() {
       const { onRouteChange } = this.props;
       return (
@@ -71,6 +78,7 @@ class SignIn extends React.Component {
                   <div className="">
                      <input
                         onClick={this.onSubmitSignIn}
+                        onKeyPress={this.handleKeyPress}
                         className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
                         type="submit"
                         value="Sign in"
