@@ -78,8 +78,7 @@ class App extends React.Component {
 
    onValidImageUrl = () => {
       const validImageFormat = ['jpg','jpeg','tiff','png','gif','bmp'];
-      const url = this.state.inputText;
-      const urlParts = url.split('.');
+      const urlParts = this.state.inputText.split('.');
       const extension = urlParts[urlParts.length-1];
       
       if( validImageFormat.includes(extension) ) {
@@ -87,7 +86,8 @@ class App extends React.Component {
       } else {
          this.setState({
             inputText: '',
-            inputPlaceholder: "Enter a valid image url." 
+            inputPlaceholder: "Enter a valid image url.", 
+            imageUrl: "./components/Media/faceLogo.png"
          });
       }
    }
