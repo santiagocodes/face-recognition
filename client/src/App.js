@@ -22,7 +22,7 @@ const particlesOptions = {
 };
 
 const initialState = {
-   input: '',
+   input: "Enter a valid image url.",
    imageUrl: '',
    box: {},
    route: 'signin',
@@ -78,11 +78,8 @@ class App extends React.Component {
    onValidImageUrl = () => {
       const validImageFormat = ['jpg','jpeg','tiff','png','gif','bmp'];
       const url = this.state.input;
-      console.log(url);
       const urlParts = url.split('.');
-      console.log(urlParts)
       const extension = urlParts[urlParts.length-1];
-      console.log(extension);
       
       if( validImageFormat.includes(extension) ) {
          return this.onImageSubmit;
