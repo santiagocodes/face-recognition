@@ -76,20 +76,20 @@ class App extends React.Component {
       this.setState({ input: event.target.value });
    };
 
-   onValidImageUrl = () => {
-      this.setState({ imageUrl: this.state.input })
-      const validImageFormat = ['jpg','jpeg','tiff','png','gif','bmp'];
-      const splitImageUrl = this.imageUrl.split(".");
+   // onValidImageUrl = () => {
+   //    this.setState({ imageUrl: this.state.input })
+   //    const validImageFormat = ['jpg','jpeg','tiff','png','gif','bmp'];
+   //    const splitImageUrl = this.imageUrl.split(".");
       
-      if( validImageFormat.includes(splitImageUrl[splitImageUrl.length-1]) ) {
-         this.onImageSubmit();
-      } else {
-         this.setState({
-            imageUrl: '', 
-            input: "Enter a valid image url." 
-         });
-      }
-   }
+   //    if( validImageFormat.includes(splitImageUrl[splitImageUrl.length-1]) ) {
+   //       this.onImageSubmit();
+   //    } else {
+   //       this.setState({
+   //          imageUrl: '', 
+   //          input: "Enter a valid image url." 
+   //       });
+   //    }
+   // }
 
    onImageSubmit = () => {
       this.setState({ imageUrl: this.state.input })
@@ -110,13 +110,13 @@ class App extends React.Component {
                      id: this.state.user.id,
                   }),
                })
-                  .then((response) => response.json())
-                  .then((count) => {
-                     this.setState(
-                        Object.assign(this.state.user, { entries: count })
-                     );
-                  })
-                  .catch(console.log);
+               .then((response) => response.json())
+               .then((count) => {
+                  this.setState(
+                     Object.assign(this.state.user, { entries: count })
+                  );
+               })
+               .catch(console.log);
             }
             this.displayFaceBox(this.calculateFaceLocation(response));
          })
@@ -149,7 +149,7 @@ class App extends React.Component {
                   />
                   <ImageLinkForm
                      onInputChange={this.onInputChange}
-                     onValidImageUrl={this.onValidImageUrl}
+                     onValidImageUrl={this.onImageSubmit}
                   />
                   <FaceRecognition box={box} imageUrl={imageUrl} />
                </div>
