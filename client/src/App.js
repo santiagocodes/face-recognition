@@ -76,23 +76,23 @@ class App extends React.Component {
       this.setState({ input: event.target.value });
    };
 
+   // onValidImageUrl = () => {
+   //    this.setState({ imageUrl: this.state.input })
+   //    const validImageFormat = ['jpg','jpeg','tiff','png','gif','bmp'];
+   //    const splitImageUrl = this.imageUrl.split(".");
+      
+   //    if( validImageFormat.includes(splitImageUrl[splitImageUrl.length-1]) ) {
+   //       this.onImageSubmit();
+   //    } else {
+   //       this.setState({
+   //          imageUrl: '', 
+   //          input: "Enter a valid image url." 
+   //       });
+   //    }
+   // }
+
    onValidImageUrl = () => {
       this.setState({ imageUrl: this.state.input })
-      const validImageFormat = ['jpg','jpeg','tiff','png','gif','bmp'];
-      const splitImageUrl = this.imageUrl.split(".");
-      
-      if( validImageFormat.includes(splitImageUrl[splitImageUrl.length-1]) ) {
-         this.onImageSubmit();
-      } else {
-         this.setState({
-            imageUrl: '', 
-            input: "Enter a valid image url." 
-         });
-      }
-   }
-
-   onImageSubmit = () => {
-      // this.setState({ imageUrl: this.state.input })
       fetch('/imageurl', {
          method: 'post',
          headers: { 'Content-Type': 'application/json' },
