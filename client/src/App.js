@@ -22,7 +22,7 @@ const particlesOptions = {
 };
 
 const initialState = {
-   inputText: "Enter a valid image url.",
+   inputText: 'Enter a valid image url.',
    imageUrl: '',
    box: {},
    route: 'signin',
