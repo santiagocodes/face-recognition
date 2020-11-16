@@ -8,7 +8,7 @@ const ImageLinkForm = ({ inputText, onInputChange, onValidImageUrl }) => {
                <input 
                   className="f5 pa1 w-70" 
                   type="text"
-                  value={inputText}
+                  value={`${inputText}`}
                   onChange={onInputChange} />
                <button
                   className="w-30 grow f4 link pv1 dib light-gray bg-light-purple"
