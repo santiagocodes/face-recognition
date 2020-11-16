@@ -77,7 +77,7 @@ class App extends React.Component {
 
    onValidImageUrl = () => {
       const validImageFormat = ['jpg','jpeg','tiff','png','gif','bmp'];
-      const url = this.input;
+      const url = this.state.input;
       console.log(url);
       const urlParts = url.split('.');
       console.log(urlParts)
