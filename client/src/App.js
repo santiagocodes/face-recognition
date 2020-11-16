@@ -85,7 +85,7 @@ class App extends React.Component {
          this.onImageSubmit();
       } else {
          this.setState({
-            input: "Enter a valid image url." 
+            inputText: "Enter a valid image url." 
          });
       }
    }
