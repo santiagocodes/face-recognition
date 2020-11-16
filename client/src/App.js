@@ -22,7 +22,8 @@ const particlesOptions = {
 };
 
 const initialState = {
-   inputText: 'Enter a valid image url.',
+   inputText: '',
+   inputPlaceholder: 'Enter a valid image url.',
    imageUrl: '',
    box: {},
    route: 'signin',
@@ -85,7 +86,8 @@ class App extends React.Component {
          this.onImageSubmit();
       } else {
          this.setState({
-            inputText: "Enter a valid image url." 
+            inputText: '',
+            inputPlaceholder: "Enter a valid image url." 
          });
       }
    }
@@ -132,7 +134,7 @@ class App extends React.Component {
    };
 
    render() {
-      const { isSignedIn, inputText, imageUrl, route, box } = this.state;
+      const { isSignedIn, inputPlaceholder, imageUrl, route, box } = this.state;
       return (
          <div className="App">
              <div className="content">
@@ -147,7 +149,7 @@ class App extends React.Component {
                      imageUrl={imageUrl}
                   />
                   <ImageLinkForm
-                     inputText={inputText}
+                     inputPlaceholder={inputPlaceholder}
                      onInputChange={this.onInputChange}
                      onValidImageUrl={this.onValidImageUrl}
                   />
