@@ -76,7 +76,7 @@ class App extends React.Component {
       this.setState({ input: event.target.value });
    };
 
-   validImageUrl = () => {
+   onValidImageUrl = () => {
       this.setState({ imageUrl: this.state.input })
       const validImageFormat = ['jpg','jpeg','tiff','png','gif','bmp'];
       const splitImageUrl = imageUrl.split(".");
@@ -146,7 +146,7 @@ class App extends React.Component {
                   />
                   <ImageLinkForm
                      onInputChange={this.onInputChange}
-                     onPictureSubmit={this.validImageUrl}
+                     onValidImageUrl={this.validImageUrl}
                   />
                   <FaceRecognition box={box} imageUrl={imageUrl} />
                </div>
