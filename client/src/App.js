@@ -76,23 +76,25 @@ class App extends React.Component {
    };
 
    onValidImageUrl = () => {
-      this.setState({ imageUrl: this.state.input })
       const validImageFormat = ['jpg','jpeg','tiff','png','gif','bmp'];
-      const urlParts = this.imageUrl.split('.');
+      const url = this.input;
+      console.log(url);
+      const urlParts = url.split('.');
+      console.log(urlParts)
       const extension = urlParts[urlParts.length-1];
+      console.log(extension);
       
       if( validImageFormat.includes(extension) ) {
          return this.onImageSubmit;
       } else {
          this.setState({
-            imageUrl: '', 
             input: "Enter a valid image url." 
          });
       }
    }
 
    onImageSubmit = () => {
-      // this.setState({ imageUrl: this.state.input })
+      this.setState({ imageUrl: this.state.input })
       fetch('/imageurl', {
          method: 'post',
          headers: { 'Content-Type': 'application/json' },
