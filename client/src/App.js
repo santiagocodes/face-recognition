@@ -82,7 +82,7 @@ class App extends React.Component {
       const extension = urlParts[urlParts.length-1];
       
       if( validImageFormat.includes(extension) ) {
-         return this.onImageSubmit;
+         this.onImageSubmit();
       } else {
          this.setState({
             input: "Enter a valid image url." 
