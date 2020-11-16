@@ -8,7 +8,6 @@ import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import Footer from './components/Footer/Footer';
 import './App.css';
-import { types } from "pg";
 
 const particlesOptions = {
    particles: {
