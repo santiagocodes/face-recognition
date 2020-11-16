@@ -86,8 +86,7 @@ class App extends React.Component {
       } else {
          this.setState({
             inputText: '',
-            inputPlaceholder: "Enter a valid image url.", 
-            imageUrl: "./components/Media/faceLogo.png"
+            inputPlaceholder: "Enter a valid image url."
          });
       }
    }
