@@ -22,7 +22,7 @@ const particlesOptions = {
 };
 
 const initialState = {
-   input: "Enter a valid image url.",
+   inputText: "Enter a valid image url.",
    imageUrl: '',
    box: {},
    route: 'signin',
@@ -72,12 +72,12 @@ class App extends React.Component {
    };
 
    onInputChange = (event) => {
-      this.setState({ input: event.target.value });
+      this.setState({ inputText: event.target.value });
    };
 
    onValidImageUrl = () => {
       const validImageFormat = ['jpg','jpeg','tiff','png','gif','bmp'];
-      const url = this.state.input;
+      const url = this.state.inputText;
       const urlParts = url.split('.');
       const extension = urlParts[urlParts.length-1];
       
@@ -85,18 +85,18 @@ class App extends React.Component {
          this.onImageSubmit();
       } else {
          this.setState({
-            imageUrl: "Enter a valid image url." 
+            input: "Enter a valid image url." 
          });
       }
    }
 
    onImageSubmit = () => {
-      this.setState({ imageUrl: this.state.input })
+      this.setState({ imageUrl: this.state.inputText })
       fetch('/imageurl', {
          method: 'post',
          headers: { 'Content-Type': 'application/json' },
          body: JSON.stringify({
-            input: this.state.input,
+            inputText: this.state.inputText,
          }),
       })
          .then((response) => response.json())
@@ -147,6 +147,7 @@ class App extends React.Component {
                      imageUrl={imageUrl}
                   />
                   <ImageLinkForm
+                     inputText={inputText}
                      onInputChange={this.onInputChange}
                      onValidImageUrl={this.onValidImageUrl}
                   />

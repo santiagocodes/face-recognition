@@ -5,7 +5,7 @@ const Rank = ({ name, entries, imageUrl }) => {
       <div className="pa1">
          {imageUrl === '' ? ( 
             <div>
-               <p className="white f1">{`Welcome to Face Recognition ${name}!`}</p>
+               <p className="white f1">Welcome to Face Recognition <span className="ttc">{`${name}!`}</span>.</p>
                <p className="white f3">{`The Web App will detect the faces of the pictures you submit. Your current picture entry count is ${entries}.`}</p>
             </div>
          ) : (
