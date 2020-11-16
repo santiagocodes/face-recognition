@@ -79,12 +79,15 @@ class App extends React.Component {
    onValidImageUrl = () => {
       this.setState({ imageUrl: this.state.input })
       const validImageFormat = ['jpg','jpeg','tiff','png','gif','bmp'];
-      const splitImageUrl = imageUrl.split(".");
+      const splitImageUrl = this.imageUrl.split(".");
       
       if( validImageFormat.includes(splitImageUrl[splitImageUrl.length-1]) ) {
          this.onImageSubmit();
       } else {
-         this.setState({ input: "Enter a valid image url." });
+         this.setState({
+            imageUrl: '', 
+            input: "Enter a valid image url." 
+         });
       }
    }
 
