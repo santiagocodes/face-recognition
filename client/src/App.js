@@ -8,6 +8,7 @@ import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import Footer from './components/Footer/Footer';
 import './App.css';
+import { types } from "pg";
 
 const particlesOptions = {
    particles: {
@@ -75,8 +76,20 @@ class App extends React.Component {
       this.setState({ input: event.target.value });
    };
 
-   onPictureSubmit = () => {
-      this.setState({ imageUrl: this.state.input });
+   validImageUrl = () => {
+      this.setState({ imageUrl: this.state.input })
+      const validImageFormat = ['jpg','jpeg','tiff','png','gif','bmp'];
+      const splitImageUrl = imageUrl.split(".");
+      
+      if( validImageFormat.includes(splitImageUrl[splitImageUrl.length-1]) ) {
+         this.onImageSubmit();
+      } else {
+         this.setState({ input: "Enter a valid image url." });
+      }
+   }
+
+   onImageSubmit = () => {
+      // this.setState({ imageUrl: this.state.input })
       fetch('/imageurl', {
          method: 'post',
          headers: { 'Content-Type': 'application/json' },
@@ -104,7 +117,7 @@ class App extends React.Component {
             }
             this.displayFaceBox(this.calculateFaceLocation(response));
          })
-         .catch((err) => console.log(err));
+         .catch((err) => console.log(err)) 
    };
 
    onRouteChange = (route) => {
@@ -133,7 +146,7 @@ class App extends React.Component {
                   />
                   <ImageLinkForm
                      onInputChange={this.onInputChange}
-                     onPictureSubmit={this.onPictureSubmit}
+                     onPictureSubmit={this.validImageUrl}
                   />
                   <FaceRecognition box={box} imageUrl={imageUrl} />
                </div>
